@@ -1,0 +1,74 @@
+[
+    {
+        "id": "1",
+        "color": "deeppink",
+        "icon": "bread.svg",
+        "iconType": "image",
+        "items": [
+            "Cookies",
+            "Gains Bread",
+            "Rolls"
+        ],
+        "title": "Bread and Pestries"
+    },
+    {
+        "id": "2",
+        "color": "yellow",
+        "icon": "clown-fish.svg",
+        "iconType": "image",
+        "items": [
+            "Cookies",
+            "Gains Bread",
+            "Rolls"
+        ],
+        "title": "Fish"
+    },
+    {
+        "id": "3",
+        "color": "yellow",
+        "icon": "steak.svg",
+        "iconType": "image",
+        "items": [
+            "Cookies",
+            "Gains Bread",
+            "Rolls"
+        ],
+        "title": "Meat"
+    },
+    {
+        "id": "4",
+        "color": "deepskyblue",
+        "icon": "milk.svg",
+        "iconType": "image",
+        "items": [
+            "Cookies",
+            "Gains Bread",
+            "Rolls"
+        ],
+        "title": "Dairy Products"
+    },
+    {
+        "id": "5",
+        "color": "blueviolet",
+        "icon": "cherries.svg",
+        "iconType": "image",
+        "items": [
+            "Cookies",
+            "Gains Bread",
+            "Rolls"
+        ],
+        "title": "Fruits"
+    },
+    {
+        "id": "6",
+        "color": "mediumseagreen",
+        "icon": "aubergine.svg",
+        "iconType": "image",
+        "items": [
+            "Cookies",
+            "Gains Bread",
+            "Rolls"
+        ],
+        "title": "Vegetables"
+    }
+]
