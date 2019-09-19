@@ -34,5 +34,5 @@ module.exports.taskDetailsBy = (data, callback) => {
   TaskListModel.findOne(data, callback);
 }
 module.exports.updateTaskListById = (conditions, data, options, callback) => {
-  TaskListModel.update(conditions, data, options, callback);
+  TaskListModel.updateOne(conditions, data, options, callback);
 }

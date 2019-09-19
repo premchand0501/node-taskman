@@ -23,6 +23,7 @@ module.exports = (app, bodyParser) => {
             const time = moment().format();
             const newTaskBoard = {
               taskName: req.body.taskName,
+              taskDesc: req.body.taskDesc,
               startDate: req.body.startDate,
               endDate: req.body.endDate,
               creatorId: req.body.creatorId,
@@ -44,6 +45,40 @@ module.exports = (app, bodyParser) => {
     else {
       res.json({ status: 0, msg: 'Please provide valid data for task board' });
     }
+  });
+
+  app.post('/update-task-board', bodyParser.json, (req, res) => {
+    const {
+      _id,
+      taskName,
+      taskDesc,
+      startDate,
+      endDate,
+    } = { ...req.body };
+
+    let updateData = {};
+
+    if (taskName) updateData.taskName = taskName;
+    if (taskDesc) updateData.taskDesc = taskDesc;
+    if (startDate) updateData.startDate = startDate;
+    if (endDate) updateData.endDate = endDate;
+
+    updateData.updatedOn = moment().format();
+    console.log(updateData);
+    taskModel.updateTaskBoardById({ _id }, updateData, {}, (err, data) => {
+      if (err) {
+        res.json({ status: 0, msg: 'Failed to update task board' });
+      }
+      else {
+        taskModel.taskBoardDetailsBy({ _id }, (err, data) => {
+          console.log(data);
+          if (err) {
+            res.json({ status: 0, msg: 'Failed to retrive updated tasks, try reloading page' });
+          }
+          res.json({ status: 1, msg: 'Successfully updated', data });
+        })
+      }
+    })
   });
   app.get('/task-boards', (req, res) => {
     if (req.body) {

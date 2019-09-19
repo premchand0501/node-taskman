@@ -20,7 +20,7 @@ module.exports = (app, bodyParser) => {
             res.json({ status: 0, msg: 'Maximum task Lists already created for the day' });
           }
           else {
-            const time = moment().fromNow();
+            const time = moment().format();
             const newTaskList = {
               subTaskName: req.body.subTaskName,
               subTaskDesc: req.body.subTaskDesc,
@@ -105,8 +105,32 @@ module.exports = (app, bodyParser) => {
     })
   });
   app.post('/update-task', bodyParser.json, (req, res) => {
-    console.log(req.body)
-    taskModel.updateTaskListById({ _id: req.body.id }, { status: req.body.status }, {}, (err, data) => {
+    const {
+      _id,
+      subTaskName,
+      subTaskDesc,
+      status,
+      startDate,
+      endDate,
+      priority,
+      assignee,
+      taskBoardId
+    } = { ...req.body };
+
+    let updateData = {};
+
+    if (subTaskName) updateData.subTaskName = subTaskName;
+    if (subTaskDesc) updateData.subTaskDesc = subTaskDesc;
+    if (status) updateData.status = status;
+    if (startDate) updateData.startDate = startDate;
+    if (endDate) updateData.endDate = endDate;
+    if (priority) updateData.priority = priority;
+    if (assignee) updateData.assignee = assignee;
+    if (taskBoardId) updateData.taskBoardId = taskBoardId;
+
+    updateData.updatedOn = moment().format();
+    console.log(updateData);
+    taskModel.updateTaskListById({ _id }, updateData, {}, (err, data) => {
       if (err) {
         res.json({ status: 0, msg: 'Failed to update task' });
       }
@@ -116,7 +140,7 @@ module.exports = (app, bodyParser) => {
           if (err) {
             res.json({ status: 0, msg: 'Failed to retrive updated tasks, try reloading page' });
           }
-          res.json({ status: 1, msg: 'Successfully updated', count: data.length, data });
+          res.json({ status: 1, msg: 'Successfully updated', data });
         })
       }
     })

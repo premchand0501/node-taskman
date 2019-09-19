@@ -38,7 +38,9 @@ module.exports.comparePassword = (passwordToCompare, hash, callback) => {
 module.exports.removeUserById = (data, callback) => {
   UserModel.find(data).deleteOne(callback);
 }
-
+module.exports.updateProfile = (conditions, data, options, callback) => {
+  UserModel.updateOne(conditions, data, options, callback);
+}
 module.exports.addUser = (data, callback) => {
   const newUser = new UserModel({
     name: data.name,

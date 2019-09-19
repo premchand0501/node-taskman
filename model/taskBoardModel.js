@@ -4,6 +4,7 @@ module.exports = (mongooseRef) => {
   mongoose = mongooseRef;
   TaskBoardSchema = mongoose.Schema({
     taskName: String,
+    taskDesc: String,
     startDate: String,
     endDate: String,
     creatorId: String,
@@ -24,4 +25,7 @@ module.exports.taskBoardDetailsBy = (data, callback) => {
 }
 module.exports.removeTaskBoardById = (data, callback) => {
   TaskBoardModel.find(data).deleteOne(callback);
+}
+module.exports.updateTaskBoardById = (conditions, data, options, callback) => {
+  TaskBoardModel.updateOne(conditions, data, options, callback);
 }
