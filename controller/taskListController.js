@@ -118,30 +118,33 @@ module.exports = (app, bodyParser) => {
     } = { ...req.body };
 
     let updateData = {};
-
-    if (subTaskName) updateData.subTaskName = subTaskName;
-    if (subTaskDesc) updateData.subTaskDesc = subTaskDesc;
-    if (status) updateData.status = status;
-    if (startDate) updateData.startDate = startDate;
-    if (endDate) updateData.endDate = endDate;
-    if (priority) updateData.priority = priority;
-    if (assignee) updateData.assignee = assignee;
-    if (taskBoardId) updateData.taskBoardId = taskBoardId;
+    console.log(status);
+    if (subTaskName != null) updateData.subTaskName = subTaskName;
+    if (subTaskDesc != null) updateData.subTaskDesc = subTaskDesc;
+    if (status != null) updateData.status = status;
+    if (startDate != null) updateData.startDate = startDate;
+    if (endDate != null) updateData.endDate = endDate;
+    if (priority != null) updateData.priority = priority;
+    if (assignee != null) updateData.assignee = assignee;
+    if (taskBoardId != null) updateData.taskBoardId = taskBoardId;
 
     updateData.updatedOn = moment().format();
-    console.log(updateData);
+    console.log("updateData", updateData);
     taskModel.updateTaskListById({ _id }, updateData, {}, (err, data) => {
       if (err) {
         res.json({ status: 0, msg: 'Failed to update task' });
       }
       else {
-        taskModel.allTaskListsBy({}, (err, data) => {
-          console.log(data);
-          if (err) {
-            res.json({ status: 0, msg: 'Failed to retrive updated tasks, try reloading page' });
-          }
-          res.json({ status: 1, msg: 'Successfully updated', data });
-        })
+        console.log(data);
+        if (data.ok === 1) {
+          taskModel.taskDetailsBy({ _id }, (err, data) => {
+            console.log(data);
+            if (err) {
+              res.json({ status: 0, msg: 'Failed to retrive updated tasks, try reloading page' });
+            }
+            res.json({ status: 1, msg: 'Successfully updated', data });
+          })
+        }
       }
     })
   });

@@ -31,6 +31,7 @@ module.exports.removeTaskListById = (data, callback) => {
   TaskListModel.findOne(data).deleteOne(callback);
 }
 module.exports.taskDetailsBy = (data, callback) => {
+  console.log(data);
   TaskListModel.findOne(data, callback);
 }
 module.exports.updateTaskListById = (conditions, data, options, callback) => {

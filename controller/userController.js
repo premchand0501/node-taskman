@@ -9,7 +9,8 @@ module.exports = (app, bodyParser) => {
     const password = req.body.password;
 
     if (email !== '' && password !== '') {
-      userModel.findUserByEmail({ email }, (err, data) => {
+      userModel.findUserBy({ email }, (err, data) => {
+        data = data[0];
         console.log(data);
         if (err) {
           res.json({ status: 0, msg: 'User not found' });
