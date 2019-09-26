@@ -5,6 +5,7 @@ console.log(limits);
 module.exports = (app, bodyParser) => {
   app.post('/create-new-board', bodyParser.json, (req, res) => {
     const today = moment().startOf('day');
+    console.log(req.body)
     if (req.body) {
       taskModel.allTaskBoardsBy({
         createdOn: {
