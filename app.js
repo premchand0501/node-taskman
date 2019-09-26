@@ -16,13 +16,8 @@ mongoose.connection.on('error', () => { console.log('---FAILED to connect to mon
 mongoose.connection.on('connected', () => { console.log('+++Connected to mongoose') });
 
 const app = express();
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://premchand0501.github.io/'); // update to match the domain you will make the request from
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
-app.use(cors({ origin: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/' : 'https://premchand0501.github.io/' }));
+// app.use(cors({ origin: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/' : 'https://premchand0501.github.io' }));
+app.use(cors({ origin: 'https://premchand0501.github.io' }));
 
 // setup static files
 app.use(express.static('public'));
