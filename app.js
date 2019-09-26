@@ -10,8 +10,8 @@ const cors = require('cors');
 const rootModel = require('./model');
 const rootController = require('./controller');
 
-const PORT = process.env.port || 4000;
-
+const PORT = process.env.PORT || 4000;
+console.log(`${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PASS}`)
 mongoose.connect(database.db, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.connection.on('error', () => { console.log('---FAILED to connect to mongoose') });
 mongoose.connection.on('connected', () => { console.log('+++Connected to mongoose') });
