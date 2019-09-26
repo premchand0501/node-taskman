@@ -16,8 +16,8 @@ mongoose.connection.on('error', () => { console.log('---FAILED to connect to mon
 mongoose.connection.on('connected', () => { console.log('+++Connected to mongoose') });
 
 const app = express();
-// app.use(cors({ origin: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/' : 'https://premchand0501.github.io' }));
-app.use(cors({ origin: 'https://premchand0501.github.io' }));
+app.use(cors({ origin: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000/' : 'https://premchand0501.github.io' }));
+console.log(process.env.NODE_ENV, process.env.MONGO_USER_PASS, process.env.MONGO_USER_NAME);
 
 // setup static files
 app.use(express.static('public'));
