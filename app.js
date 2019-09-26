@@ -41,7 +41,7 @@ const mediaUploader = multer({
 // -- MODELS
 rootModel(mongoose);
 
-app.listen(4000);
+app.listen(PORT);
 console.log(`Express server running at localhost:${PORT}`);
 
 // -- CONTROLLERS
