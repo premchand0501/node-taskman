@@ -17,13 +17,14 @@ mongoose.connection.on('connected', () => { console.log('+++Connected to mongoos
 
 const app = express();
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://premchand0501.github.io/'); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Access-Control-Allow-Origin', process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://premchand0501.github.io/'); // update to match the domain you will make the request from
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
 // setup static files
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 // body parser setup
 const urlencodedBodyParser = bodyParser.urlencoded({ extended: true })
