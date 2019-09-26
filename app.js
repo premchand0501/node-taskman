@@ -28,7 +28,7 @@ const jsonBodyParser = bodyParser.json();
 app.use(urlencodedBodyParser);
 app.use(jsonBodyParser);
 app.get('/', (req, res) => {
-  res.send('./public/www/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 })
 // -- Media folder
 const storage = multer.diskStorage({
