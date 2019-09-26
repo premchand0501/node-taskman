@@ -17,7 +17,7 @@ mongoose.connection.on('error', () => { console.log('---FAILED to connect to mon
 mongoose.connection.on('connected', () => { console.log('+++Connected to mongoose') });
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000', optionsSuccessStatus: 200 }));
+app.use(cors({ origin: process.env.PORT === 4000 ? 'http://localhost:3000' : 'https://premchand0501.github.io', optionsSuccessStatus: 200 }));
 
 // setup static files
 app.use(express.static("public"));
