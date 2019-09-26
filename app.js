@@ -11,13 +11,12 @@ const rootModel = require('./model');
 const rootController = require('./controller');
 
 const PORT = process.env.PORT || 4000;
-console.log(`${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PASS}`)
 mongoose.connect(database.db, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.connection.on('error', () => { console.log('---FAILED to connect to mongoose') });
 mongoose.connection.on('connected', () => { console.log('+++Connected to mongoose') });
 
 const app = express();
-app.use(cors({ origin: process.env.PORT === 4000 ? 'http://localhost:3000' : 'https://premchand0501.github.io', optionsSuccessStatus: 200 }));
+app.use(cors({ origin: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://premchand0501.github.io/', optionsSuccessStatus: 200 }));
 
 // setup static files
 app.use(express.static("public"));
