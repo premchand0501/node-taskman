@@ -16,8 +16,7 @@ mongoose.connection.on('error', () => { console.log('---FAILED to connect to mon
 mongoose.connection.on('connected', () => { console.log('+++Connected to mongoose') });
 
 const app = express();
-app.use(cors({ origin: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://premchand0501.github.io' }));
-console.log(process.env.NODE_ENV, process.env.MONGO_USER_PASS, process.env.MONGO_USER_NAME);
+app.use(cors({ origin: 'https://premchand0501.github.io' }));
 
 // setup static files
 app.use(express.static('public'));
@@ -49,5 +48,5 @@ console.log(`Express server running at localhost:${PORT}`);
 rootController(app, { urlencoded: urlencodedBodyParser, json: jsonBodyParser }, mediaUploader);
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.send('<h3><center><code>node task manager</code></center></h3>')
 })
